@@ -1,0 +1,23 @@
+.header-nav{
+    display: flex;
+    justify-content: space-between;
+}
+.header-ul{
+    display: flex;
+    gap: 20px;
+    font-size: 24px;
+}
+.header-li{
+    list-style: none;
+}
+.header-link{
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+.header-logo{
+    align-self: center;
+}
+.logo{
+    font-size: 30px;
+}
