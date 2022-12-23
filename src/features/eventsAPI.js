@@ -9,9 +9,14 @@ const eventsAPI = createApi({
 
     endpoints:(builder) =>({
         all:builder.query({
-            query:() => `/events`
+            query:() => `/events`,
+            transformResponse:(response) => response.response
+        }),
+        getOneEvent: builder.query({
+            query:(id) => `/events/${id}`,
+            transformResponse:(response) => response.response
         })
     })
 })
 export default eventsAPI
-export const {useAllQuery} = eventsAPI
+export const {useAllQuery,useGetOneEventQuery} = eventsAPI

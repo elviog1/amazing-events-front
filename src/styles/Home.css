@@ -1,0 +1,11 @@
+.home-banner{
+    background-image: url(https://www.mexicodestinos.com/blog/wp-content/uploads/2015/08/Ferias-y-Eventos-en-Septiembre-2015.jpg);
+    height: 50vh;
+    object-fit: cover;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: .8;
+}

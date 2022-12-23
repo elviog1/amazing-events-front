@@ -1,0 +1,8 @@
+.detail-card{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+.img-detail{
+    max-width: 500px; 
+}
