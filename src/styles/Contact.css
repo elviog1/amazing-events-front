@@ -1,0 +1,24 @@
+.contact-title{
+    font-size: 55px;
+}
+.form{
+    display: flex;
+    flex-direction: column;
+    width: 320px;
+    gap: 10px;
+}
+.contact-form{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+.input-form{
+    font-size: 22px;
+    border-radius: 8px;
+    padding: 5px;
+}
+.button{
+    font-size: 22px;
+    padding: 5px;
+    cursor: pointer;
+}

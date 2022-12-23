@@ -3,39 +3,45 @@ import { useNavigate } from 'react-router-dom'
 import { useGetOneEventQuery } from '../features/eventsAPI'
 import '../styles/Detail.css'
 export default function Details() {
-    let navigate = useNavigate()
+    const [event, setEvent] = useState({})
     let query = new URLSearchParams(window.location.search)
     let eventID = query.get("id")
-    const {data:detail} = useGetOneEventQuery(eventID)
-    const [data,setData] = useState([])
-    useEffect(()=>{
-        if(detail){
-            setData(detail)
-        }
-    },[setData])
-    console.log(data)
+    let navigate = useNavigate()
+    const {data} = useGetOneEventQuery(eventID)
 
-    const printDetail = (item,index)=> {
+    useEffect(()=>{
+        if(data){
+            setEvent(data)
+        }
+    },[data])
+    console.log(event)
+
+    const backgroundURL = ""
+
+    const printDetail = (item)=> {
       return (
-          <div className='detail-card' key={index}>
-            <button onClick={()=> navigate("/")}>V</button>
-              {/* <img alt='imagen del evento' src={item.image} className='img-detail'/> */}
-              <div className='detail-info'>
-                  <h2>{item.name}</h2>
-                  {/* <h3>{item.description}</h3>
-                  <h3>Fecha: {item.fecha}</h3>
-                  <h3>Lugar: {item.place}</h3>
-                  <h3>Precio: ${item.price}</h3> */}
-                  {/* <h3>{item.description}</h3> */}
-              </div>
-          </div>
+        <div className='detail-container' style={{backgroundImage:`url(${item.image})`}}>
+            <div className='detail'>
+                <img className='back-arrow' alt='back arrow' onClick={()=> navigate("/")} src='https://cdn-icons-png.flaticon.com/512/7235/7235838.png' />
+                <div className='detail-info'>
+                    <h2 className='detail-h title'>{item.name}</h2>
+                    <h3 className='detail-h'>{item.description}</h3>
+                    <h3 className='detail-h'>Fecha: {item.fecha}</h3>
+                    {parseInt(item.fecha)>2022 ?
+                    <h3 className='detail-h'>Estimado: {item.estimate}</h3>
+                    :
+                    <h3 className='detail-h'>Asistieron: {item.assistance}</h3> }
+                    <h3 className='detail-h'>Lugar: {item.place}</h3>
+                    <h3 className='detail-h'>Precio: ${item.price}</h3>
+                </div>
+            </div>
+        </div>
       )
   }
 
   return (
     <div>
-        {/* {printDetail(detail)} */}
-        {/* {data.map(printDetail)} */}
+        { printDetail(event)}
     </div>
   )
 }
