@@ -14,9 +14,6 @@ export default function Details() {
             setEvent(data)
         }
     },[data])
-    console.log(event)
-
-    const backgroundURL = ""
 
     const printDetail = (item)=> {
       return (

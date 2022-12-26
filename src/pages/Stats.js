@@ -74,7 +74,6 @@ export default function Stats() {
     }
     const upcomingResult = categoryResult.map(category => upcoming(eventUpcoming,category))
     
-    console.log(upcomingResult)
     const printTH = (text)=> (
         <tr className='title-table'>
             <th colSpan="3">{text}</th>
