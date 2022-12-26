@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import '../styles/Card.css'
 export default function Card(props) {
     const allEvents = props.events
+    
 
     const printEvents = (item,index)=>{
         return (
@@ -18,7 +19,7 @@ export default function Card(props) {
 
   return (
     <div className='card-main'>
-        {allEvents.map(printEvents)}
+        {allEvents.length > 0 ? allEvents.map(printEvents) : <h2>No hay eventos con el nombre de "{props.word}"...</h2>}
     </div>
   )
 }

@@ -1,11 +1,29 @@
 import React, { useState } from 'react'
 import '../styles/Contact.css'
+import emailjs from '@emailjs/browser'
+import swal from 'sweetalert'
 export default function Contact() {
     const [name,setName] = useState("")
     const [email,setEmail] = useState("")
     const [message,setMessage] = useState("")
     const sendEmail = (e)=>{
         e.preventDefault()
+        if(name.length <3){
+            swal("Error!", `Su nombre debe tener minimo 4 caracteres`, "error");
+        }
+        else if(email.length === 0){
+            swal("Error!", `Ingrese un correo electronico`, "error");
+        }
+        else if(message.length <5){
+            swal("Error!", `Ingrese un mensaje por favor`, "error");
+        }
+        else{
+            emailjs.sendForm("service_a7xpd7c","template_jx93opg",e.target,"nAw2N6DYf4535Zve3")
+            .then(response => console.log(response)) 
+            .catch(error => console.log(error)) 
+            swal("Perfecto !", `Su mensaje fue enviado correctamente`, "success");
+            
+        }
     }
 
     const changeName = (e)=>{
@@ -28,7 +46,7 @@ export default function Contact() {
                 <input  name='input-email' type="email" placeholder='Email' className='input-form' onChange={changeEmail} />
                 <textarea  name='textarea' cols={35} rows={7} className='textarea' placeholder='Escribe tu mensaje...' onChange={changeMessage}>
                 </textarea>
-                <button className='button'>Enviar</button>
+                <button type='submit' className='button'>Enviar</button>
             </form>
         </div>
     </div>

@@ -9,22 +9,23 @@ export default function Header() {
         {name:"Contacto", to: "/contacto"},
         {name:"Estadisticas", to: "/estadisticas"}
     ]
+    
 
-    const printNav = (item)=>{
+    const printNav = (item,index)=>{
         return (
-            <li key={item} className="header-li">
-                <Link to={item.to} className="header-link">{item.name}</Link>
-            </li>
+                <Link key={index} to={item.to} className="header-link">{item.name}</Link>
         )
     }
+
   return (
     <div className='header-nav'>
         <div className='header-logo'>
-            <span className='logo'>Super Eventos</span>
+            <span className='logo'><span className='color'>A</span>mazing <span className='color'>E</span>vents</span>
         </div>
-        <ul className='header-ul'>
+        <div className='links'>
             {navLinks.map(printNav)}
-        </ul>
+        </div>
+
     </div>
   )
 }

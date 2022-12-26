@@ -87,7 +87,7 @@ export default function Stats() {
     const printEventResult = (item,index)=> (
         <tr key={index}>
             <td>{item.category}</td>
-            <td>{item.revenues}</td>
+            <td>$ {item.revenues}</td>
             <td>{item.attendance ? item.attendance.toFixed(2) : item.estimate.toFixed(2)} %</td>
         </tr>
 )
@@ -105,15 +105,15 @@ export default function Stats() {
                 {printTH("Estadisticas de los eventos")}
             </thead>
             <tbody>
-               <StadisticTD text1="Eventos con mayor porcentaje de asistencia"
-                            text2="Eventos con menor porcentaje de asistencia"
+               <StadisticTD text1="Evento con mayor porcentaje de asistencia"
+                            text2="Evento con menor porcentaje de asistencia"
                             text3="Evento con mayor capacidad" />
                 <tr>
                     {maxAttendanceEvent.map(print)}
                     {minAttendanceEvent.map(print)}
                     {maxCapacityEvent.map(print)}
                 </tr>
-                {printTH("Estadisticas de eventos futuros segun categoria")}
+                {printTH("Estadisticas de eventos futuros segun categorias")}
                 
                 <StadisticTD    text1="Categoria"
                                 text2="Ingresos"

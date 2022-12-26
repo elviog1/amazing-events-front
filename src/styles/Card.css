@@ -12,6 +12,7 @@
 }
 .card-container{
     width: 18rem;
+    transition: .5s;
 }
 .card-img{
     width: 18rem;
@@ -25,4 +26,9 @@
 .card-link{
     text-decoration: none;
 
+}
+.card-container:hover{
+    transform: scale(1.1);
+    border-radius: 20px;
+    background-color: rgb(241, 134, 115);
 }

@@ -10,7 +10,7 @@ export default function Footer() {
   return (
     <footer className='footer-container'>
         <div>
-            <span className='logo'>Super Eventos</span>
+        <span className='logo'><span className='color'>A</span>mazing <span className='color'>E</span>vents</span>
         </div>
         <div className='footer-red-social'>
             <img className='red-social' alt='logo instagram' src='https://cdn-icons-png.flaticon.com/512/2111/2111463.png' />
