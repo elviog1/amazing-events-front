@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Contact from "./pages/Contact";
 import Details from "./pages/Details";
@@ -19,6 +20,7 @@ function App() {
         <Route path="/contacto" element={<Contact />} />
         <Route path="/estadisticas" element={<Stats />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }

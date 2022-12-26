@@ -1,0 +1,23 @@
+tr,td{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.table{
+    text-align: center;
+    font-size: 20px;
+}
+.div-table{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+.title-table{
+    font-size: 24px;
+}
+.title-tr{
+    background-color: bisque;
+}
+.stats-title{
+    font-size: 55px;
+}

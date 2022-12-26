@@ -15,7 +15,7 @@ export default function Home() {
       setEvents(allEvents);
     }
   }, [allEvents]);
-  // console.log(allEvents)
+  console.log(allEvents)
 
   return (
     <div>

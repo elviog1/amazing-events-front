@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import StadisticTD from '../components/StadisticTD'
 import { useAllQuery } from '../features/eventsAPI'
-
+import '../styles/Stats.css'
 export default function Stats() {
     const [events,setEvents] = useState([])
     const {data} = useAllQuery()
@@ -33,7 +33,8 @@ export default function Stats() {
     const categoryNotRepeat = new Set(categories);
     const categoryResult = [...categoryNotRepeat]; // categorias sin repetidos 
 
-    function upcoming(array,category){
+    // pasado
+    function past(array,category){
         let revenues = 0
         let capacity = 0
         let assistance = 0
@@ -51,11 +52,31 @@ export default function Stats() {
         }
     }
     
-    const upcomingResult = categoryResult.map(category => upcoming(arrayAttendance,category))
-    console.log(upcomingResult) // arreglar el NAN del museo
-
+    const pastResult = categoryResult.map(category => past(arrayAttendance,category))
+    
+    // futuro
+    function upcoming(array,category){
+        let revenues = 0
+        let capacity = 0
+        let estimate = 0
+        for(let i = 0; i< array.length; i++){
+            if(array[i].category === category){
+                revenues += array[i].price * parseInt(array[i].estimate) 
+                capacity += parseInt(array[i].capacity)
+                estimate += parseInt(array[i].estimate) 
+            }
+        }
+        return {
+            category: category,
+            revenues: revenues,
+            estimate: estimate * 100 / capacity
+        }
+    }
+    const upcomingResult = categoryResult.map(category => upcoming(eventUpcoming,category))
+    
+    console.log(upcomingResult)
     const printTH = (text)=> (
-        <tr>
+        <tr className='title-table'>
             <th colSpan="3">{text}</th>
         </tr>
     )
@@ -63,38 +84,54 @@ export default function Stats() {
             <td key={index}>{item.name}</td>
     )
 
+    const printEventResult = (item,index)=> (
+        <tr key={index}>
+            <td>{item.category}</td>
+            <td>{item.revenues}</td>
+            <td>{item.attendance ? item.attendance.toFixed(2) : item.estimate.toFixed(2)} %</td>
+        </tr>
+)
+
+    
+
   return (
     <div>
         <div className="home-banner">
             <h1 className='stats-title'>Estadisticas</h1>
         </div>
-
-        <table>
+    <div className='div-table'>
+        <table className='table'>
             <thead>
-                {printTH("Events Stadistics")}
+                {printTH("Estadisticas de los eventos")}
             </thead>
             <tbody>
-               <StadisticTD text1="Events with the highest percentage of attendance"
-                            text2="Events with the lowest percentage of attendance"
-                            text3="Events with larger capacity" />
+               <StadisticTD text1="Eventos con mayor porcentaje de asistencia"
+                            text2="Eventos con menor porcentaje de asistencia"
+                            text3="Evento con mayor capacidad" />
                 <tr>
                     {maxAttendanceEvent.map(print)}
                     {minAttendanceEvent.map(print)}
                     {maxCapacityEvent.map(print)}
                 </tr>
-                {printTH("Upcoming events statistics by category")}
+                {printTH("Estadisticas de eventos futuros segun categoria")}
                 
-                <StadisticTD    text1="Categories"
-                                text2="Revenues"
-                                text3="Percentage of attendance" />
+                <StadisticTD    text1="Categoria"
+                                text2="Ingresos"
+                                text3="Porcentaje de asistencia" />
+
+                    {pastResult.map(printEventResult)}
+
                 
 
-                {printTH("Past events statistics by category")}
-                <StadisticTD    text1="Categories"
-                                text2="Revenues"
-                                text3="Percentage of attendance" />
+                {printTH("Estadisticas de eventos pasados segun categoria")}
+                <StadisticTD    text1="Categoria"
+                                text2="Ingresos"
+                                text3="Porcentaje de asistencia" />
+
+                                {upcomingResult.map(printEventResult)}
             </tbody>
         </table>
+        </div>
     </div>
   )
 }
