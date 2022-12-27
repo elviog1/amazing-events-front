@@ -4,7 +4,7 @@ const eventsAPI = createApi({
     reducerPath: "eventsAPI",
 
     baseQuery: fetchBaseQuery({
-        baseUrl: "http://localhost:4000"
+        baseUrl: "https://proyectos-back.onrender.com"
     }),
 
     endpoints:(builder) =>({
