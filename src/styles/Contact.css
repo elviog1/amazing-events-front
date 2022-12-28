@@ -22,3 +22,6 @@
     padding: 5px;
     cursor: pointer;
 }
+.textarea{
+    resize: none;
+}
